@@ -1,12 +1,11 @@
 angular
     .module('chestnutApp', [])
     .controller('ChestnutCtrl', function ($scope, $http) {
+        $scope.userId = 'jonathansharifi';
+        $scope.items = [];
 
-    $scope.items = [];
-
-    $http.get('items').
-       success(function(data, status, headers, config) {
-         $scope.items = data;
-    })
-
+        $http.get('items/user/'+$scope.userId).
+           success(function(data, status, headers, config) {
+             $scope.items = data;
+        })
     });

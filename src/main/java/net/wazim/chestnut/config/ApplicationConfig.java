@@ -2,6 +2,7 @@ package net.wazim.chestnut.config;
 
 import net.wazim.chestnut.ItemDatabase;
 import net.wazim.chestnut.controllers.ItemManagementController;
+import net.wazim.chestnut.controllers.UserManagementController;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -23,4 +24,8 @@ public class ApplicationConfig {
         return new ItemManagementController(itemDatabase());
     }
 
+    @Bean
+    public UserManagementController userManagementController() {
+        return new UserManagementController(itemDatabase());
+    }
 }
