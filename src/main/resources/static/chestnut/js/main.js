@@ -3,15 +3,15 @@ angular
     .config(['$routeProvider', function($routeProvider) {
     		    $routeProvider
     		    .when('/', {
-    				    templateUrl: '/index.html',
+    				    templateUrl: 'chestnut/index.html',
     				    controller: 'ChestnutCtrl'
     			})
     			.when('/:userId', {
-                    	templateUrl: '/index.html',
+                    	templateUrl: 'chestnut/index.html',
                     	controller: 'ChestnutCtrl'
                 })
     			.otherwise({
-                         redirectTo: '/index.html'
+                         redirectTo: 'chestnut/index.html'
                 });
     }])
     .controller('ChestnutCtrl', function ($scope, $http, $location) {
