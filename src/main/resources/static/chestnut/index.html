@@ -1,32 +1,40 @@
 <html ng-app="chestnutApp">
 <head>
     <title>Chestnut</title>
-    <link rel="stylesheet" type="text/css" href="chestnut/chestnut.css">
+    <link href="//cdn.muicss.com/mui-0.1.18/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//cdn.muicss.com/mui-0.1.18/js/mui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="chestnut/chestnut.css"/>
     <script language="javascript" type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
     <script language="javascript" type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
     <script language="javascript" type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-route.min.js"></script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-route.min.js"></script>
     <script language="javascript" type="text/javascript" src="chestnut/js/main.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body ng-controller="ChestnutCtrl">
-
-<div class="nav-panel">
-    <ul>
-        <li>All</li>
-        <li>Films</li>
-        <li>Games</li>
-    </ul>
-</div>
+<center><input class="search" ng-model="searchText" placeholder="Search this collection..." autofocus></center>
 
 <div class="items-container">
-<div class="item" ng-repeat="item in items">
-    <img ng-src="{{item.poster}}" alt="{{item.title}}" />
+    <div class="item" ng-repeat="item in items | orderBy:'title' | filter:searchText">
+        <img ng-src="{{item.poster}}" alt="{{item.title}}"/>
+        <center>{{item.title}}</center>
+    </div>
 </div>
-</div>
-</body>
 
+<div class="add-item">
+<button class="mui-btn mui-btn-floating" onclick="showDiv()">+</button>
+    <div style="display:none;" id="add-item">
+        <input id="titleId" name="titleId" type="text" ng-model="newItem">
+        <button ng-click="addItem()">Add Item</button>
+    </div>
+    </div>
+<script>
+function showDiv() {
+   document.getElementById('add-item').style.display = "block";
+}
+</script>
+</body>
 </html>

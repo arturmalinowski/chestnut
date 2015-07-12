@@ -1,42 +1,13 @@
 body{
     background: url('images/zwartevilt.png');
     background-repeat: repeat;
-    overflow: hidden;
 }
-
-.nav-panel {
-    position: fixed;
-    float: left;
-    top: 0;
-    left: 0;
-    width: 14%;
-    height: 100%;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    font-size: 24px;
-}
-
-.nav-panel ul {
-   list-style-type: none;
-   padding: 0px;
-   margin: 0px;
-}
-
-.nav-panel ul li{
-   padding-left: 20px;
-   padding-top: 10px;
-}
-
 
 .items-container {
     position: relative;
-    float: left;
-    top: 0;
-    left: 15%;
-    width: 85%;
-    height: 100%;
-    overflow: scroll;
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
+    top: 2%;
+    left: 5%;
+    width: 90%;
 }
 
 .item {
@@ -48,6 +19,9 @@ body{
     width: 150px;
     position: relative;
     float: left;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 12px;
 }
 
 .item img {
@@ -56,4 +30,31 @@ body{
     position: relative;
     top:0;
     left: 0;
+}
+
+.search {
+  margin-top: 0.5%;
+  background: url(search-white.png) no-repeat 10px 6px #fcfcfc;
+  border: 1px solid #d1d1d1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-weight: 100;
+  color: black;
+  height: 60px;
+  width: 50%;
+  padding: 6px 15px 6px 35px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45) inset;
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45) inset;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45) inset;
+  text-align: center;
+}
+
+.add-item {
+    position: fixed;
+    bottom: 45px;
+    right: 24px;
 }
