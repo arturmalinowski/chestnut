@@ -26,10 +26,14 @@ angular
         $scope.addItem = function() {
             $http.post('items', $scope.newItem).
               success(function(data, status, headers, config) {
+                   $.growl.notice({ title: data.title, message: "Added to Library" });
                    $http.get('items').
                     success(function(data, status, headers, config) {
                       $scope.items = data;
                    })
+                   $('#titleId').val("");
+                   $('#item-input').toggle();
+                   $('.add-background').toggleClass('glow');
               });
         }
     });

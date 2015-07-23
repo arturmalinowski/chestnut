@@ -1,16 +1,18 @@
 <html ng-app="chestnutApp">
 <head>
     <title>Chestnut</title>
-    <link href="//cdn.muicss.com/mui-0.1.18/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <link href="//cdn.muicss.com/mui-0.1.18/css/mui.min.css" rel="stylesheet" type="text/css"/>
     <script src="//cdn.muicss.com/mui-0.1.18/js/mui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="chestnut/chestnut.css"/>
+    <link rel="stylesheet" type="text/css" href="chestnut/jquery.growl.css"/>
     <script language="javascript" type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
     <script language="javascript" type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
     <script language="javascript" type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-route.min.js"></script>
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-route.min.js"></script>
     <script language="javascript" type="text/javascript" src="chestnut/js/main.js"></script>
+    <script language="javascript" type="text/javascript" src="chestnut/js/jquery.growl.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 
@@ -24,17 +26,24 @@
     </div>
 </div>
 
-<div class="add-item">
-<button class="mui-btn mui-btn-floating" onclick="showDiv()">+</button>
-    <div style="display:none;" id="add-item">
-        <input id="titleId" name="titleId" type="text" ng-model="newItem">
+<div class="add-background">
+
+    <div id="item-input" class="item-input">
+        <input id="titleId" name="titleId" type="text" ng-model="newItem" placeholder="Enter a valid IMDB ID">
         <button ng-click="addItem()">Add Item</button>
     </div>
+
+    <div class="add-item" id="add-item">
+        <button class="mui-btn mui-btn-floating" onclick="showDiv()">+</button>
     </div>
+</div>
+
 <script>
 function showDiv() {
-   document.getElementById('add-item').style.display = "block";
+   $('#item-input').toggle();
+   $('.add-background').toggleClass('glow');
 }
+
 </script>
 </body>
 </html>

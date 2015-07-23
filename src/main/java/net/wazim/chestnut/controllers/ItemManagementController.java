@@ -2,11 +2,13 @@ package net.wazim.chestnut.controllers;
 
 import net.wazim.chestnut.ItemDatabase;
 import net.wazim.chestnut.domain.Item;
-import net.wazim.chestnut.domain.ItemRequest;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public class ItemManagementController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public HttpStatus addNewItem(@RequestBody String id) {
+    public ResponseEntity<Item> addNewItem(@RequestBody String id) {
         String response = restTemplate.getForObject(String.format("http://www.omdbapi.com/?i=%s&plot=short&r=json", id), String.class);
         JSONObject jsonObject = new JSONObject(response);
         String omdbResponse = jsonObject.getString("Response");
@@ -40,9 +42,9 @@ public class ItemManagementController {
             );
 
             itemDatabase.addItem(imdbMatchedItem);
-            return HttpStatus.OK;
+            return new ResponseEntity<>(imdbMatchedItem, HttpStatus.OK);
         }
-        return HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(method = RequestMethod.GET)
