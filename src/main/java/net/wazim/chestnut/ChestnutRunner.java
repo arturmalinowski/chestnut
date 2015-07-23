@@ -1,8 +1,7 @@
 package net.wazim.chestnut;
 
 import net.wazim.chestnut.config.ApplicationConfig;
-import net.wazim.chestnut.domain.ItemUserRequest;
-import net.wazim.chestnut.domain.UserRequest;
+import net.wazim.chestnut.domain.ItemRequest;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.client.RestTemplate;
@@ -31,15 +30,11 @@ public class ChestnutRunner {
 
     private static void fillUpDatabase() {
         RestTemplate restTemplate = new RestTemplate();
-        UserRequest request = new UserRequest();
-        request.setUserId("jonathansharifi");
-        restTemplate.postForEntity("http://localhost:8080/users", request, String.class);
         List<String> filmTitles = asList("tt0411008", "tt0816692", "tt1375666", "tt0137523", "tt0110912", "tt0105236", "tt0099685", "tt0362270", "tt0449059", "tt0947798", "tt1285016", "tt1454468", "tt0790636", "tt2024544");
 
         filmTitles.stream().forEach(filmId -> {
-            ItemUserRequest item = new ItemUserRequest();
+            ItemRequest item = new ItemRequest();
             item.setImdbId(filmId);
-            item.setUserId("jonathansharifi");
             restTemplate.postForEntity("http://localhost:8080/items", item, String.class);
         });
     }

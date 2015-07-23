@@ -1,6 +1,6 @@
 package net.wazim.chestnut;
 
-import net.wazim.chestnut.domain.ItemUserRequest;
+import net.wazim.chestnut.domain.ItemRequest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,14 +31,13 @@ public class AddingTitleTest {
 
     @Test
     public void userCanAddTitleToTheirCollection() throws IOException {
-        ItemUserRequest itemUserRequest = new ItemUserRequest();
-        itemUserRequest.setImdbId("tt0816692");
-        itemUserRequest.setUserId("jonathansharifi");
+        ItemRequest itemRequest = new ItemRequest();
+        itemRequest.setImdbId("tt0816692");
         TestRestTemplate restTemplate = new TestRestTemplate();
-        ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8080/items", itemUserRequest, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8080/items", itemRequest, String.class);
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
 
-        ResponseEntity<String> items = restTemplate.getForEntity("http://localhost:8080/items/user/jonathansharifi", String.class);
+        ResponseEntity<String> items = restTemplate.getForEntity("http://localhost:8080/items", String.class);
         assertThat(items.getBody(), containsString("Interstellar"));
     }
 
