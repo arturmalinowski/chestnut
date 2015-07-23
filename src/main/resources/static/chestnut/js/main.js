@@ -22,9 +22,14 @@ angular
            success(function(data, status, headers, config) {
              $scope.items = data;
         })
-        $scope.addItem = function() {
-            $http.post('addItem', $scope.newItem);
 
-            console.log($scope.newItem);
+        $scope.addItem = function() {
+            $http.post('items', $scope.newItem).
+              success(function(data, status, headers, config) {
+                   $http.get('items').
+                    success(function(data, status, headers, config) {
+                      $scope.items = data;
+                   })
+              });
         }
     });

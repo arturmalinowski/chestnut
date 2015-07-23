@@ -24,11 +24,9 @@ public class ItemManagementController {
         this.restTemplate = new RestTemplate();
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public HttpStatus addNewItem(@RequestBody ItemRequest request) {
-        String requestId = request.getImdbId();
-
-        String response = restTemplate.getForObject(String.format("http://www.omdbapi.com/?i=%s&plot=short&r=json", requestId), String.class);
+    @RequestMapping(method = RequestMethod.POST)
+    public HttpStatus addNewItem(@RequestBody String id) {
+        String response = restTemplate.getForObject(String.format("http://www.omdbapi.com/?i=%s&plot=short&r=json", id), String.class);
         JSONObject jsonObject = new JSONObject(response);
         String omdbResponse = jsonObject.getString("Response");
 
