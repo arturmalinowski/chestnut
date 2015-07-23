@@ -22,8 +22,9 @@ angular
            success(function(data, status, headers, config) {
              $scope.items = data;
         })
-
         $scope.addItem = function() {
+            $http.post('addItem', $scope.newItem);
+
             console.log($scope.newItem);
         }
     });
