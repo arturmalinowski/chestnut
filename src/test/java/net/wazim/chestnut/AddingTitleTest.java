@@ -3,6 +3,7 @@ package net.wazim.chestnut;
 import net.wazim.chestnut.domain.ItemRequest;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,7 @@ public class AddingTitleTest {
         chestnutRunner.stop();
     }
 
+    @Ignore
     @Test
     public void userCanAddTitleToTheirCollection() throws IOException {
         ItemRequest itemRequest = new ItemRequest();
