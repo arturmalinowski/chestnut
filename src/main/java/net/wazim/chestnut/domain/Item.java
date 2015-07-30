@@ -5,15 +5,14 @@ public class Item {
     private String imdbId;
     private String title;
     private String type;
-    private String plot;
     private String poster;
 
-    public Item(String imdbId, String title, String poster, String type, String plot) {
+    public Item(String imdbId, String title, String type, String poster) {
         this.imdbId = imdbId;
         this.title = title;
-        this.poster = poster;
         this.type = type;
-        this.plot = plot;
+        this.poster = poster;
+
     }
 
     public Item() {}
@@ -36,9 +35,5 @@ public class Item {
 
     public String getPoster() {
         return poster;
-    }
-
-    public String getPlot() {
-        return plot;
     }
 }
