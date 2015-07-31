@@ -44,7 +44,7 @@ public class ItemManagementController {
             ), String.class);
 
             JSONObject tmdbJsonResponse = new JSONObject(tmdbResponse);
-            String posterPath = tmdbJsonResponse.getString("poster_path");
+            String posterPath = tmdbJsonResponse.getJSONArray("movie_results").getJSONObject(0).get("poster_path").toString();
 
             jdbcTemplate.update(format("INSERT INTO titles " +
                             "(id, title, type, url)" +
@@ -52,7 +52,7 @@ public class ItemManagementController {
                             "('%s', '%s', '%s', '%s')",
 
                     jsonObject.getString("imdbID"),
-                    jsonObject.getString("Title").replaceAll("'", "&#39;"),
+                    jsonObject.getString("Title").replaceAll("'", ""),
                     jsonObject.getString("Type"),
                     "http://image.tmdb.org/t/p/w154" + posterPath
             ));
