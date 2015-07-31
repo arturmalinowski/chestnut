@@ -32,20 +32,29 @@ public class ItemManagementController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Item> addNewItem(@RequestBody String id) {
-        String response = restTemplate.getForObject(String.format("http://www.omdbapi.com/?i=%s&plot=short&r=json", id), String.class);
+        String response = restTemplate.getForObject(format("http://www.omdbapi.com/?i=%s&plot=short&r=json", id), String.class);
         JSONObject jsonObject = new JSONObject(response);
         String omdbResponse = jsonObject.getString("Response");
 
         if ("True".equals(omdbResponse)) {
+            String tmdbResponse = restTemplate.getForObject(format(
+                    "https://api.themoviedb.org/3/find/%s?external_source=imdb_id&api_key=%s",
+                    id,
+                    "6df9b0060f92da2824cf753db1798d65"
+            ), String.class);
+
+            JSONObject tmdbJsonResponse = new JSONObject(tmdbResponse);
+            String posterPath = tmdbJsonResponse.getString("poster_path");
+
             jdbcTemplate.update(format("INSERT INTO titles " +
-                    "(id, title, type, url)" +
-                    " VALUES " +
-                    "('%s', '%s', '%s', '%s')",
+                            "(id, title, type, url)" +
+                            " VALUES " +
+                            "('%s', '%s', '%s', '%s')",
 
                     jsonObject.getString("imdbID"),
                     jsonObject.getString("Title"),
                     jsonObject.getString("Type"),
-                    "https://mmprox.com/browse.php?u=" + jsonObject.getString("Poster")
+                    "http://image.tmdb.org/t/p/w154" + posterPath
             ));
 
             return new ResponseEntity<>(HttpStatus.OK);
