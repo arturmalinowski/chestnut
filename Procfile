@@ -1,0 +1,1 @@
+web: java -D $JAVA_OPTS -Dserver.port=$PORT -jar target/chestnut-DEV-SNAPSHOT.jar

@@ -2,6 +2,7 @@ package net.wazim.chestnut.controllers;
 
 import net.wazim.chestnut.domain.Item;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +24,7 @@ public class ItemManagementController {
     private final RestTemplate restTemplate;
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public ItemManagementController(JdbcTemplate jdbcTemplate) {
         this.restTemplate = new RestTemplate();
         this.jdbcTemplate = jdbcTemplate;

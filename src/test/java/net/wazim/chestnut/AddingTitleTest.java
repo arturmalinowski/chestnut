@@ -19,17 +19,6 @@ public class AddingTitleTest {
 
     private ChestnutRunner chestnutRunner;
 
-    @Before
-    public void setupChestnut() {
-        chestnutRunner = new ChestnutRunner();
-        chestnutRunner.start();
-    }
-
-    @After
-    public void shutdownChestnut() {
-        chestnutRunner.stop();
-    }
-
     @Ignore
     @Test
     public void userCanAddTitleToTheirCollection() throws IOException {
