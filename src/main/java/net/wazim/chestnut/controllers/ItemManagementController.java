@@ -45,7 +45,7 @@ public class ItemManagementController {
                     jsonObject.getString("imdbID"),
                     jsonObject.getString("Title"),
                     jsonObject.getString("Type"),
-                    jsonObject.getString("Poster")
+                    "https://mmprox.com/browse.php?u=" + jsonObject.getString("Poster")
             ));
 
             return new ResponseEntity<>(HttpStatus.OK);
