@@ -52,7 +52,7 @@ public class ItemManagementController {
                             "('%s', '%s', '%s', '%s')",
 
                     jsonObject.getString("imdbID"),
-                    jsonObject.getString("Title"),
+                    jsonObject.getString("Title").replaceAll("'", "&#39;"),
                     jsonObject.getString("Type"),
                     "http://image.tmdb.org/t/p/w154" + posterPath
             ));
