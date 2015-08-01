@@ -1,6 +1,8 @@
 package net.wazim.chestnut.controllers;
 
 import net.wazim.chestnut.domain.Item;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +46,8 @@ public class ItemManagementController {
             ), String.class);
 
             JSONObject tmdbJsonResponse = new JSONObject(tmdbResponse);
-            String posterPath = tmdbJsonResponse.getJSONArray("movie_results").getJSONObject(0).get("poster_path").toString();
+            JSONArray array = concatArray(tmdbJsonResponse.getJSONArray("movie_results"), tmdbJsonResponse.getJSONArray("tv_results"));
+            String posterPath = array.getJSONObject(0).get("poster_path").toString();
 
             jdbcTemplate.update(format("INSERT INTO titles " +
                             "(id, title, type, url)" +
@@ -60,6 +63,18 @@ public class ItemManagementController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    private JSONArray concatArray(JSONArray arr1, JSONArray arr2)
+            throws JSONException {
+        JSONArray result = new JSONArray();
+        for (int i = 0; i < arr1.length(); i++) {
+            result.put(arr1.get(i));
+        }
+        for (int i = 0; i < arr2.length(); i++) {
+            result.put(arr2.get(i));
+        }
+        return result;
     }
 
     @RequestMapping(method = RequestMethod.GET)
