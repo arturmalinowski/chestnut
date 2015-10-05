@@ -27,10 +27,10 @@ public class ChestnutRunner {
     @Bean
     public JdbcTemplate jdbcTemplate() {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setServerName("fizzy-cherry.db.elephantsql.com");
-        dataSource.setDatabaseName("ukukcfto");
-        dataSource.setUser("ukukcfto");
-        dataSource.setPassword("Iqo5w5HmCRa1Tp_dDyACdqKiphXTibsU");
+        dataSource.setServerName("localhost:5432");
+        dataSource.setDatabaseName("database");
+        dataSource.setUser("postgres");
+        dataSource.setPassword("password");
 
         return new JdbcTemplate(dataSource);
     }
